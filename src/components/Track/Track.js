@@ -1,19 +1,34 @@
-import * as React from "react";
-import "./Track.css";
+import * as React from 'react';
+import './Track.css';
 
 export default function Track({
   id,
   name,
   artist,
   album,
+  uri,
   isRemoval,
   setPlaylistTracks,
+  setSearchResults,
 }) {
-  const renderAction = isRemoval ? "-" : "+";
+  const renderAction = isRemoval ? '-' : '+';
+  
   const toggleToPlayList = () =>
     isRemoval
-      ? setPlaylistTracks((tracks) => tracks.filter((track) => track.id !== id))
-      : setPlaylistTracks((tracks) => [...tracks, { id, name, artist, album }]);
+      ? (setPlaylistTracks((tracks) =>
+          tracks.filter((track) => track.id !== id)
+        ),
+        setSearchResults((tracks) => [
+          ...tracks,
+          { id, name, artist, album, uri },
+        ]))
+      : (setPlaylistTracks((tracks) => [
+          ...tracks,
+          { id, name, artist, album, uri },
+        ]),
+        setSearchResults((tracks) =>
+          tracks.filter((track) => track.id !== id)
+        ));
 
   return (
     <div className="Track">

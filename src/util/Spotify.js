@@ -1,5 +1,5 @@
 const CLIENT_ID = 'fc2449106d7a4ec3a50a812ab699cf89';
-const REDIRECT_URI = 'http://localhost:3000/';
+const REDIRECT_URI = 'https://condescending-feynman-70355a.netlify.app/';
 
 let accessToken;
 let expires;
